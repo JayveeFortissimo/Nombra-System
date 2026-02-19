@@ -21,11 +21,7 @@ The Nombra System is an advanced payroll solution designed to streamline salary 
 
 ## Setup Instructions
 ### Prerequisites
-- Ensure you have Python 3.x installed.
-- Install necessary dependencies by running:
-  ```bash
-  pip install -r requirements.txt
-  ```
+- Ensure you have new version of node.js.
 
 ### Installation Steps
 1. **Clone the Repository:**  
@@ -40,14 +36,7 @@ The Nombra System is an advanced payroll solution designed to streamline salary 
 3. **Run the Application:**  
    You can start the application by running:
    ```bash
-   python app.py
+    npm run dev
    ```
-
-### Configuration
-- Update the `config.py` file with your database connection details and other environment variables as needed.
-
-### Troubleshooting
-- If you encounter any issues, please check the logs located in the `logs/` directory for error messages.
-
 ## Conclusion
 Nombra System aims to enhance payroll management efficiency and compliance. For further assistance, contact support or refer to the wiki for more detailed guides.
