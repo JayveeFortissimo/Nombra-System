@@ -1,7 +1,6 @@
 import Container from "@/components/common/Container";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -20,6 +19,9 @@ const Login = () => {
             <CardTitle className="text-2xl">Nombra System</CardTitle>
             <CardDescription>Can track and compute your parte!</CardDescription>
           </CardHeader>
+          <CardContent>
+            <LoginForm />
+          </CardContent>
         </Card>
       </div>
     </Container>
