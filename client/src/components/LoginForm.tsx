@@ -80,7 +80,7 @@ const LoginForm = () => {
         <div className="w-full mt-5 border" />
       </form>
 
-      <div className="mt-5 w-full flex justify-between gap-5">
+      <div className="mt-5 w-full flex flex-wrap justify-between gap-5">
         {socialsButtons.map((btns, index) => (
           <Button variant={"outline"} className="flex-auto" key={index}>
             {btns.logo()} {btns.name}
@@ -88,7 +88,7 @@ const LoginForm = () => {
         ))}
       </div>
 
-      <p className="text-center text-[0.8rem] mt-6 cursor-pointer">Dont Have Account Already?</p>
+      <p className="text-center text-[0.8rem] mt-6 cursor-pointer hover:underline">Dont Have Account Already?</p>
     </div>
   );
 };
