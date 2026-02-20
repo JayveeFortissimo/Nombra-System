@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "@/pages/Login";
-// import Register from "@/pages/Register";
-// import AdminDashboard from "@/pages/AdminDashboard";
-// import UserDashboard from "@/pages/UserDashboard";
+import Register from "@/pages/Register";
+import AdminDashboard from "@/pages/AdminDashboard";
+import UserDashboard from "@/pages/UserDashboard";
 import Wrapper from "@/Wrapper";
 
 function App() {
@@ -14,6 +14,18 @@ function App() {
         {
           index:true,
           element:<Login/>
+        },
+        {
+          path:"register",
+          element:<Register/>
+        },
+        {
+          path:"admin",
+          element:<AdminDashboard/>
+        },
+        {
+          path:"user",
+          element:<UserDashboard/>
         }
       ]
     },
