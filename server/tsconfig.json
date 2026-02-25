@@ -7,8 +7,12 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@controller/*": ["./src/controller/*"]
+    },
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/**/*.ts"],
   "exclude": ["node_modules"]
 }
