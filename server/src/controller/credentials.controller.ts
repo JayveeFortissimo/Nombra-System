@@ -28,14 +28,14 @@ class CredentialsController {
       if (loginResult.message === "Password is incorrect!" || loginResult.message === "Invalid Account!") {
         return res.status(401).json({ message: loginResult.message });
       } else {
-        const { accesToken, refreshToken } = loginResult;
+        const { accessToken, refreshToken } = loginResult;
         res.cookie("refreshToken", refreshToken, {
           httpOnly: true, // Set to true in production
           // secure: true,
           // sameSite: "strict",
           maxAge: 7 * 24 * 60 * 60 * 1000,
         });
-        res.status(200).json({ message: "Login successful!", accesToken });
+        res.status(200).json({ message: "Login successful!", accessToken });
       }
     } catch (_error) {
       console.log("Error in login controller", _error);

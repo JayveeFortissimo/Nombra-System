@@ -11,15 +11,30 @@ import {
 } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import { socialsButtons } from "@/components/social-media-buttons/SocialMediaData";
+import { useNavigate } from "react-router-dom";
+import { credentials } from "@/service/auth";
+import { setAccesToken } from "@/store/authentication";
+import { useDispatch } from "react-redux";
+import { toast } from "sonner";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const form = useForm<z.infer<typeof formLoginSchema>>({
     resolver: zodResolver(formLoginSchema),
     defaultValues: { email: "", password: "" },
   });
 
   const onSubmit = async (data: z.infer<typeof formLoginSchema>) => {
-    console.log(data);
+    try {
+      const result = await credentials.Login(data);
+      toast.success("Login successful!");
+      dispatch(setAccesToken(result.accessToken));
+      navigate("/user");
+    } catch (error: { message: string } | any) {
+      toast.error(error?.message as string);
+    }
   };
 
   return (
@@ -69,7 +84,7 @@ const LoginForm = () => {
 
         <div className="flex items-center justify-between mt-5">
           <div className="flex gap-2">
-            <input type="checkbox" className="cursor-pointer"/>
+            <input type="checkbox" className="cursor-pointer" />
             <span className="text-[0.8rem]">Remember me</span>
           </div>
           <Button variant={"custom"} className="w-25">
@@ -88,7 +103,12 @@ const LoginForm = () => {
         ))}
       </div>
 
-      <p className="text-center text-[0.8rem] mt-6 cursor-pointer hover:underline">Dont Have Account Already?</p>
+      <p
+        className="text-center text-[0.8rem] mt-6 cursor-pointer hover:underline"
+        onClick={() => navigate("/register")}
+      >
+        Dont Have Account Already?
+      </p>
     </div>
   );
 };
