@@ -27,7 +27,7 @@ class CredentialsService {
   async login(requested: Credentials) {
     const { email, password } = requested;
     const checkUser = await this.repositories.GetUserByEmail(email.trim());
-   
+    
     const compare = await comparePassword(password! as string, checkUser.user_password); 
   
     const { user_id, email: userEmail, isadmin } = checkUser;
@@ -38,7 +38,7 @@ class CredentialsService {
       return { message: "Invalid Account!" };
     }
 
-    const accesToken = generateAccessToken({
+    const accessToken = generateAccessToken({
       user_id,
       email: userEmail,
       isAdmin: isadmin,
@@ -49,7 +49,7 @@ class CredentialsService {
       isAdmin: isadmin,
     });
 
-    return { accesToken, refreshToken };
+    return { accessToken, refreshToken };
   }
 
   async refreshToken(token: string) {

@@ -8,7 +8,10 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 8080;
 
-app.use(cors());
+app.use(cors({
+    origin:["http://localhost:5173", process.env.VITE_FRONTEND_CALLBACK_URL!],
+    credentials: true,
+}));
 app.use(cookieParser());
 app.use(express.json());
 app.use('/api',router);

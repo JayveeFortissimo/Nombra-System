@@ -11,8 +11,11 @@ import {
 } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import { socialsButtons } from "@/components/social-media-buttons/SocialMediaData";
+import { useNavigate } from "react-router-dom";
+import {credentials} from "@/service/auth";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formRegisterSchema>>({
     resolver: zodResolver(formRegisterSchema),
     defaultValues: {
@@ -24,6 +27,11 @@ const RegisterForm = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof formRegisterSchema>) => {
+   try{
+     await credentials.register(data);
+   }finally{
+      form.reset();
+   }
     console.log(data);
   };
 
@@ -115,10 +123,6 @@ const RegisterForm = () => {
         </FieldGroup>
 
         <div className="flex items-center justify-between mt-5">
-          <div className="flex gap-2">
-            <input type="checkbox" className="cursor-pointer" />
-            <span className="text-[0.8rem]">Remember me</span>
-          </div>
           <Button variant={"custom"} className="w-25">
             Register
           </Button>
@@ -135,7 +139,10 @@ const RegisterForm = () => {
         ))}
       </div>
 
-      <p className="text-center text-[0.8rem] mt-6 cursor-pointer hover:underline">
+      <p
+        className="text-center text-[0.8rem] mt-6 cursor-pointer hover:underline"
+        onClick={() => navigate("/")}
+      >
         Have Account Already?
       </p>
     </div>
